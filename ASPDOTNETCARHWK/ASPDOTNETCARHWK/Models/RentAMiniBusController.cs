@@ -12,7 +12,7 @@ namespace ASPDOTNETCARHWK.Models
 {
     public class RentAMiniBusController : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
         // GET: RentAMiniBus
         public ActionResult Index()
@@ -27,12 +27,12 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentAMiniBus rentAMiniBus = db.RentAMiniBus.Find(id);
-            if (rentAMiniBus == null)
+            RentAMiniBu rentAMiniBu = db.RentAMiniBus.Find(id);
+            if (rentAMiniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(rentAMiniBus);
+            return View(rentAMiniBu);
         }
 
         // GET: RentAMiniBus/Create
@@ -46,16 +46,16 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RentAMiniBusID,firstName,lastName,emailAddess,hireDate,phoneNumber,MinibusID")] RentAMiniBus rentAMiniBus)
+        public ActionResult Create([Bind(Include = "RentAMiniBusID,firstName,lastName,emailAddess,hireDate,phoneNumber,MinibusID")] RentAMiniBu rentAMiniBu)
         {
             if (ModelState.IsValid)
             {
-                db.RentAMiniBus.Add(rentAMiniBus);
+                db.RentAMiniBus.Add(rentAMiniBu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(rentAMiniBus);
+            return View(rentAMiniBu);
         }
 
         // GET: RentAMiniBus/Edit/5
@@ -65,12 +65,12 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentAMiniBus rentAMiniBus = db.RentAMiniBus.Find(id);
-            if (rentAMiniBus == null)
+            RentAMiniBu rentAMiniBu = db.RentAMiniBus.Find(id);
+            if (rentAMiniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(rentAMiniBus);
+            return View(rentAMiniBu);
         }
 
         // POST: RentAMiniBus/Edit/5
@@ -78,15 +78,15 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RentAMiniBusID,firstName,lastName,emailAddess,hireDate,phoneNumber,MinibusID")] RentAMiniBus rentAMiniBus)
+        public ActionResult Edit([Bind(Include = "RentAMiniBusID,firstName,lastName,emailAddess,hireDate,phoneNumber,MinibusID")] RentAMiniBu rentAMiniBu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rentAMiniBus).State = EntityState.Modified;
+                db.Entry(rentAMiniBu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(rentAMiniBus);
+            return View(rentAMiniBu);
         }
 
         // GET: RentAMiniBus/Delete/5
@@ -96,12 +96,12 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentAMiniBus rentAMiniBus = db.RentAMiniBus.Find(id);
-            if (rentAMiniBus == null)
+            RentAMiniBu rentAMiniBu = db.RentAMiniBus.Find(id);
+            if (rentAMiniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(rentAMiniBus);
+            return View(rentAMiniBu);
         }
 
         // POST: RentAMiniBus/Delete/5
@@ -109,8 +109,8 @@ namespace ASPDOTNETCARHWK.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RentAMiniBus rentAMiniBus = db.RentAMiniBus.Find(id);
-            db.RentAMiniBus.Remove(rentAMiniBus);
+            RentAMiniBu rentAMiniBu = db.RentAMiniBus.Find(id);
+            db.RentAMiniBus.Remove(rentAMiniBu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

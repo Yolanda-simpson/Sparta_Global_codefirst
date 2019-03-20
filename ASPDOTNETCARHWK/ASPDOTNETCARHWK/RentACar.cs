@@ -1,107 +1,38 @@
 namespace ASPDOTNETCARHWK
 {
     using System;
-    using System.Data.Entity;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+    using System.Data.Entity.Spatial;
 
-    public partial class RentACar : DbContext
+    public partial class RentaCar
     {
-        public RentACar()
-            : base("name=RentACar")
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RentaCar()
         {
+            Cars = new HashSet<Car>();
         }
 
+        public int rentACarID { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-        }
+        public string firstName { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.RentaCar> RentaCars { get; set; }
+        public string LastName { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.MiniBus> MiniBus { get; set; }
+        public int Age { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.RentAVan> RentAVans { get; set; }
+        public DateTime hireDate { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.RentAMiniBus> RentAMiniBus { get; set; }
+        public int CarID { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.Van> Vans { get; set; }
+        public string duration { get; set; }
 
-        public System.Data.Entity.DbSet<ASPDOTNETCARHWK.Car> Cars { get; set; }
-    }
+        public string emailAddress { get; set; }
 
-    public class RentaCar
-    {
-        public int rentACarID
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int phoneNumber { get; set; }
 
-        public string firstName
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public string LastName
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public int Age
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
-        public System.DateTime hireDate
-        {
-            get => default(DateTime);
-            set
-            {
-            }
-        }
-
-        public int CarID
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
-        public string duration
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public string emailAddress
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public int phoneNumber
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

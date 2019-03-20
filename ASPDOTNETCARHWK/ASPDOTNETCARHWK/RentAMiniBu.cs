@@ -6,31 +6,30 @@ namespace ASPDOTNETCARHWK
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class RentAVan
+    public partial class RentAMiniBu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RentAVan()
+        public RentAMiniBu()
         {
-            Vans = new HashSet<Van>();
+            MiniBus = new HashSet<MiniBu>();
         }
 
-        public int RentAVanID { get; set; }
-
-        public int vanID { get; set; }
+        [Key]
+        public int RentAMiniBusID { get; set; }
 
         public string firstName { get; set; }
 
         public string lastName { get; set; }
 
-        public string duation { get; set; }
+        public string emailAddess { get; set; }
 
-        public DateTime HireDate { get; set; }
-
-        public string EmailAddress { get; set; }
+        public DateTime hireDate { get; set; }
 
         public string phoneNumber { get; set; }
 
+        public int MinibusID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Van> Vans { get; set; }
+        public virtual ICollection<MiniBu> MiniBus { get; set; }
     }
 }

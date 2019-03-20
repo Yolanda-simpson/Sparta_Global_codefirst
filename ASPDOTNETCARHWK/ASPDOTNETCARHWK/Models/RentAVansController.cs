@@ -12,7 +12,7 @@ namespace ASPDOTNETCARHWK.Models
 {
     public class RentAVansController : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
         // GET: RentAVans
         public ActionResult Index()

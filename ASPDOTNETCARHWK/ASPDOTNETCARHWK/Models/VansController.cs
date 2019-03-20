@@ -12,12 +12,13 @@ namespace ASPDOTNETCARHWK.Models
 {
     public class VansController : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
         // GET: Vans
         public ActionResult Index()
         {
-            return View(db.Vans.ToList());
+            var vans = db.Vans.Include(v => v.RentAVan);
+            return View(vans.ToList());
         }
 
         // GET: Vans/Details/5
@@ -38,6 +39,7 @@ namespace ASPDOTNETCARHWK.Models
         // GET: Vans/Create
         public ActionResult Create()
         {
+            ViewBag.RentAVan_RentAVanID = new SelectList(db.RentAVans, "RentAVanID", "firstName");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "vanID,regNumber,vanColour,vanManufacturer,vanSize,numberOfSeats")] Van van)
+        public ActionResult Create([Bind(Include = "vanID,regNumber,vanColour,vanManufacturer,vanSize,numberOfSeats,RentAVan_RentAVanID")] Van van)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace ASPDOTNETCARHWK.Models
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RentAVan_RentAVanID = new SelectList(db.RentAVans, "RentAVanID", "firstName", van.RentAVan_RentAVanID);
             return View(van);
         }
 
@@ -70,6 +73,7 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return HttpNotFound();
             }
+            ViewBag.RentAVan_RentAVanID = new SelectList(db.RentAVans, "RentAVanID", "firstName", van.RentAVan_RentAVanID);
             return View(van);
         }
 
@@ -78,7 +82,7 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "vanID,regNumber,vanColour,vanManufacturer,vanSize,numberOfSeats")] Van van)
+        public ActionResult Edit([Bind(Include = "vanID,regNumber,vanColour,vanManufacturer,vanSize,numberOfSeats,RentAVan_RentAVanID")] Van van)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace ASPDOTNETCARHWK.Models
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.RentAVan_RentAVanID = new SelectList(db.RentAVans, "RentAVanID", "firstName", van.RentAVan_RentAVanID);
             return View(van);
         }
 

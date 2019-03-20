@@ -1,67 +1,27 @@
-﻿using System;
-using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
-using System.ComponentModel;
-
 namespace ASPDOTNETCARHWK
 {
-    public class Van
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Van
     {
-        public int vanID
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int vanID { get; set; }
 
-        public string regNumber
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
+        public string regNumber { get; set; }
 
-        public string vanColour
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
+        public string vanColour { get; set; }
 
-        public string vanManufacturer
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
+        public string vanManufacturer { get; set; }
 
-        public string vanSize
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
+        public string vanSize { get; set; }
 
-        public int numberOfSeats
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int numberOfSeats { get; set; }
 
-        public RentAVan RentAVan
-        {
-            get => default(RentAVan);
-            set
-            {
-            }
-        }
+        public int? RentAVan_RentAVanID { get; set; }
+
+        public virtual RentAVan RentAVan { get; set; }
     }
 }

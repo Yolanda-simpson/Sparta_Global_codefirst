@@ -10,107 +10,107 @@ using ASPDOTNETCARHWK;
 
 namespace ASPDOTNETCARHWK.Models
 {
-    public class RentaCarsController : Controller
+    public class RentAVans1Controller : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
-        // GET: RentaCars
+        // GET: RentAVans1
         public ActionResult Index()
         {
-            return View(db.RentaCars.ToList());
+            return View(db.RentAVans.ToList());
         }
 
-        // GET: RentaCars/Details/5
+        // GET: RentAVans1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentaCar rentaCar = db.RentaCars.Find(id);
-            if (rentaCar == null)
+            RentAVan rentAVan = db.RentAVans.Find(id);
+            if (rentAVan == null)
             {
                 return HttpNotFound();
             }
-            return View(rentaCar);
+            return View(rentAVan);
         }
 
-        // GET: RentaCars/Create
+        // GET: RentAVans1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RentaCars/Create
+        // POST: RentAVans1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rentACarID,firstName,LastName,Age,hireDate,CarID,duration,emailAddress,phoneNumber")] RentaCar rentaCar)
+        public ActionResult Create([Bind(Include = "RentAVanID,vanID,firstName,lastName,duation,HireDate,EmailAddress,phoneNumber")] RentAVan rentAVan)
         {
             if (ModelState.IsValid)
             {
-                db.RentaCars.Add(rentaCar);
+                db.RentAVans.Add(rentAVan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(rentaCar);
+            return View(rentAVan);
         }
 
-        // GET: RentaCars/Edit/5
+        // GET: RentAVans1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentaCar rentaCar = db.RentaCars.Find(id);
-            if (rentaCar == null)
+            RentAVan rentAVan = db.RentAVans.Find(id);
+            if (rentAVan == null)
             {
                 return HttpNotFound();
             }
-            return View(rentaCar);
+            return View(rentAVan);
         }
 
-        // POST: RentaCars/Edit/5
+        // POST: RentAVans1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "rentACarID,firstName,LastName,Age,hireDate,CarID,duration,emailAddress,phoneNumber")] RentaCar rentaCar)
+        public ActionResult Edit([Bind(Include = "RentAVanID,vanID,firstName,lastName,duation,HireDate,EmailAddress,phoneNumber")] RentAVan rentAVan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rentaCar).State = EntityState.Modified;
+                db.Entry(rentAVan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(rentaCar);
+            return View(rentAVan);
         }
 
-        // GET: RentaCars/Delete/5
+        // GET: RentAVans1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RentaCar rentaCar = db.RentaCars.Find(id);
-            if (rentaCar == null)
+            RentAVan rentAVan = db.RentAVans.Find(id);
+            if (rentAVan == null)
             {
                 return HttpNotFound();
             }
-            return View(rentaCar);
+            return View(rentAVan);
         }
 
-        // POST: RentaCars/Delete/5
+        // POST: RentAVans1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RentaCar rentaCar = db.RentaCars.Find(id);
-            db.RentaCars.Remove(rentaCar);
+            RentAVan rentAVan = db.RentAVans.Find(id);
+            db.RentAVans.Remove(rentAVan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

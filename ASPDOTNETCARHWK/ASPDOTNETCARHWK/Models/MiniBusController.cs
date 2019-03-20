@@ -12,12 +12,13 @@ namespace ASPDOTNETCARHWK.Models
 {
     public class MiniBusController : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
         // GET: MiniBus
         public ActionResult Index()
         {
-            return View(db.MiniBus.ToList());
+            var miniBus = db.MiniBus.Include(m => m.RentAMiniBu);
+            return View(miniBus.ToList());
         }
 
         // GET: MiniBus/Details/5
@@ -27,17 +28,18 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MiniBus miniBus = db.MiniBus.Find(id);
-            if (miniBus == null)
+            MiniBu miniBu = db.MiniBus.Find(id);
+            if (miniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(miniBus);
+            return View(miniBu);
         }
 
         // GET: MiniBus/Create
         public ActionResult Create()
         {
+            ViewBag.RentAMiniBus_RentAMiniBusID = new SelectList(db.RentAMiniBus, "RentAMiniBusID", "firstName");
             return View();
         }
 
@@ -46,16 +48,17 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MinibusID,regNumber,MiniBusColour,miniBusManufacturer,numberOfSeats,miniBusSize")] MiniBus miniBus)
+        public ActionResult Create([Bind(Include = "MinibusID,regNumber,MiniBusColour,miniBusManufacturer,numberOfSeats,miniBusSize,RentAMiniBus_RentAMiniBusID")] MiniBu miniBu)
         {
             if (ModelState.IsValid)
             {
-                db.MiniBus.Add(miniBus);
+                db.MiniBus.Add(miniBu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(miniBus);
+            ViewBag.RentAMiniBus_RentAMiniBusID = new SelectList(db.RentAMiniBus, "RentAMiniBusID", "firstName", miniBu.RentAMiniBus_RentAMiniBusID);
+            return View(miniBu);
         }
 
         // GET: MiniBus/Edit/5
@@ -65,12 +68,13 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MiniBus miniBus = db.MiniBus.Find(id);
-            if (miniBus == null)
+            MiniBu miniBu = db.MiniBus.Find(id);
+            if (miniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(miniBus);
+            ViewBag.RentAMiniBus_RentAMiniBusID = new SelectList(db.RentAMiniBus, "RentAMiniBusID", "firstName", miniBu.RentAMiniBus_RentAMiniBusID);
+            return View(miniBu);
         }
 
         // POST: MiniBus/Edit/5
@@ -78,15 +82,16 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MinibusID,regNumber,MiniBusColour,miniBusManufacturer,numberOfSeats,miniBusSize")] MiniBus miniBus)
+        public ActionResult Edit([Bind(Include = "MinibusID,regNumber,MiniBusColour,miniBusManufacturer,numberOfSeats,miniBusSize,RentAMiniBus_RentAMiniBusID")] MiniBu miniBu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(miniBus).State = EntityState.Modified;
+                db.Entry(miniBu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(miniBus);
+            ViewBag.RentAMiniBus_RentAMiniBusID = new SelectList(db.RentAMiniBus, "RentAMiniBusID", "firstName", miniBu.RentAMiniBus_RentAMiniBusID);
+            return View(miniBu);
         }
 
         // GET: MiniBus/Delete/5
@@ -96,12 +101,12 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MiniBus miniBus = db.MiniBus.Find(id);
-            if (miniBus == null)
+            MiniBu miniBu = db.MiniBus.Find(id);
+            if (miniBu == null)
             {
                 return HttpNotFound();
             }
-            return View(miniBus);
+            return View(miniBu);
         }
 
         // POST: MiniBus/Delete/5
@@ -109,8 +114,8 @@ namespace ASPDOTNETCARHWK.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MiniBus miniBus = db.MiniBus.Find(id);
-            db.MiniBus.Remove(miniBus);
+            MiniBu miniBu = db.MiniBus.Find(id);
+            db.MiniBus.Remove(miniBu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

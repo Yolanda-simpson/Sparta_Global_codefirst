@@ -241,4 +241,3 @@ C:\Users\tech-w99a.LAPTOP-3BLG1NHP\Engineering26\week10\day2\Sparta_Global_codef
 C:\Users\tech-w99a.LAPTOP-3BLG1NHP\Engineering26\week10\day2\Sparta_Global_codefirst\ASPDOTNETCARHWK\ASPDOTNETCARHWK\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\tech-w99a.LAPTOP-3BLG1NHP\Engineering26\week10\day2\Sparta_Global_codefirst\ASPDOTNETCARHWK\ASPDOTNETCARHWK\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\tech-w99a.LAPTOP-3BLG1NHP\Engineering26\week10\day2\Sparta_Global_codefirst\ASPDOTNETCARHWK\ASPDOTNETCARHWK\obj\Debug\ASPDOTNETCARHWK.csproj.CopyComplete
-C:\Users\tech-w99a.LAPTOP-3BLG1NHP\Engineering26\week10\day2\Sparta_Global_codefirst\ASPDOTNETCARHWK\ASPDOTNETCARHWK\obj\Debug\ASPDOTNETCARHWK.csprojAssemblyReference.cache

@@ -12,12 +12,13 @@ namespace ASPDOTNETCARHWK.Models
 {
     public class CarsController : Controller
     {
-        private RentACar db = new RentACar();
+        private Cars db = new Cars();
 
         // GET: Cars
         public ActionResult Index()
         {
-            return View(db.Cars.ToList());
+            var cars1 = db.Cars1.Include(c => c.RentaCar);
+            return View(cars1.ToList());
         }
 
         // GET: Cars/Details/5
@@ -27,7 +28,7 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = db.Cars1.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,7 @@ namespace ASPDOTNETCARHWK.Models
         // GET: Cars/Create
         public ActionResult Create()
         {
+            ViewBag.RentaCar_rentACarID = new SelectList(db.RentaCars, "rentACarID", "firstName");
             return View();
         }
 
@@ -46,15 +48,16 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarID,CarManufacturer,carColour,numberOfSeats,carSize,carType")] Car car)
+        public ActionResult Create([Bind(Include = "CarID,CarManufacturer,carColour,numberOfSeats,carSize,carType,RentaCar_rentACarID")] Car car)
         {
             if (ModelState.IsValid)
             {
-                db.Cars.Add(car);
+                db.Cars1.Add(car);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RentaCar_rentACarID = new SelectList(db.RentaCars, "rentACarID", "firstName", car.RentaCar_rentACarID);
             return View(car);
         }
 
@@ -65,11 +68,12 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = db.Cars1.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.RentaCar_rentACarID = new SelectList(db.RentaCars, "rentACarID", "firstName", car.RentaCar_rentACarID);
             return View(car);
         }
 
@@ -78,7 +82,7 @@ namespace ASPDOTNETCARHWK.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarID,CarManufacturer,carColour,numberOfSeats,carSize,carType")] Car car)
+        public ActionResult Edit([Bind(Include = "CarID,CarManufacturer,carColour,numberOfSeats,carSize,carType,RentaCar_rentACarID")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace ASPDOTNETCARHWK.Models
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.RentaCar_rentACarID = new SelectList(db.RentaCars, "rentACarID", "firstName", car.RentaCar_rentACarID);
             return View(car);
         }
 
@@ -96,7 +101,7 @@ namespace ASPDOTNETCARHWK.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
+            Car car = db.Cars1.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
@@ -109,8 +114,8 @@ namespace ASPDOTNETCARHWK.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Car car = db.Cars.Find(id);
-            db.Cars.Remove(car);
+            Car car = db.Cars1.Find(id);
+            db.Cars1.Remove(car);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model ASPDOTNETCARHWK.MiniBus
+﻿@model ASPDOTNETCARHWK.MiniBu
 
 @{
     ViewBag.Title = "Details";
@@ -7,9 +7,17 @@
 <h2>Details</h2>
 
 <div>
-    <h4>MiniBus</h4>
+    <h4>MiniBu</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RentAMiniBu.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentAMiniBu.firstName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.regNumber)
         </dt>

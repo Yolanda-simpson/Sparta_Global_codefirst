@@ -144,6 +144,7 @@
     <Compile Include="MiniBu.cs" />
     <Compile Include="Models\CarsController.cs" />
     <Compile Include="Models\MiniBusController.cs" />
+    <Compile Include="Models\RentaCarsController.cs" />
     <Compile Include="Models\RentAMiniBusController.cs" />
     <Compile Include="Models\RentAVans1Controller.cs" />
     <Compile Include="Models\RentAVansController.cs" />
@@ -226,6 +227,11 @@
     <Content Include="Views\MiniBus\Details.cshtml" />
     <Content Include="Views\MiniBus\Edit.cshtml" />
     <Content Include="Views\MiniBus\Index.cshtml" />
+    <Content Include="Views\RentaCars\Create.cshtml" />
+    <Content Include="Views\RentaCars\Delete.cshtml" />
+    <Content Include="Views\RentaCars\Details.cshtml" />
+    <Content Include="Views\RentaCars\Edit.cshtml" />
+    <Content Include="Views\RentaCars\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
